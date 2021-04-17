@@ -1,4 +1,5 @@
 import psycopg2
+import re
 
 
 def conectar():
@@ -6,11 +7,17 @@ def conectar():
     Função para conectar ao servidor.
     """
     try:
+
+        with open('dados-bd-heroku.txt') as f:
+            dados = f.readlines()
+
+        dados = [re.findall(': [a-zA-Z0-9\-\.\:/@]+', cont)[0].replace(': ', '').strip() for cont in dados]
+
         conn = psycopg2.connect(
-            database='pacientes',
-            host='localhost',
-            user='teste_db',
-            password='postgres')
+            database=dados[1],
+            host=dados[0],
+            user=dados[2],
+            password=dados[4])
 
         return conn
 
