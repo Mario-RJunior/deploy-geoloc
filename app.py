@@ -20,9 +20,11 @@ if __name__ == '__main__':
 
     else:
         df = gera_dataframe(bd)
-        df = df['endereco_completo'].apply(converte_endereco)
+
+        for e in df['endereco_completo'].to_list():
+            st.write(converte_endereco(e))
 
         #df = agrupa_visitas(df, equipes)
 
-        st.write(df)
+        #st.write(df)
         # df = agrupa_visitas(df, equipes)
