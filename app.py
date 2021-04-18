@@ -20,6 +20,7 @@ if __name__ == '__main__':
 
     else:
         df = gera_dataframe(bd)
-        coord = converte_endereco(origem)
-        st.write(coord)
+        df = agrupa_visitas(df, equipes)
+
+        st.write(df)
         # df = agrupa_visitas(df, equipes)
