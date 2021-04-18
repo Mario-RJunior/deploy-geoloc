@@ -22,7 +22,7 @@ if __name__ == '__main__':
         df = gera_dataframe(bd)
         st.write(df)
 
-        st.write(converte_endereco('R. Maestro Antônio Cícero, 111, Serra - ES'))
+        st.write(converte_endereco('Rua Maestro Antônio Cícero, 111, Serra - ES'))
 
         #for e in df['endereco_completo'].to_list():
         #    st.write(converte_endereco(e))
