@@ -31,7 +31,7 @@ def gera_dataframe(dado):
 
 
 def converte_endereco(endereco):
-    geolocator = Nominatim(user_agent="my_user_agent", timeout=20)
+    geolocator = Nominatim(user_agent="my_user_agent", timeout=40)
     pais = "BR"
     loc = geolocator.geocode(endereco + ',' + pais)
 
