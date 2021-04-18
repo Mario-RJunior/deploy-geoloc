@@ -22,8 +22,10 @@ if __name__ == '__main__':
         df = gera_dataframe(bd)
         st.write(df)
 
-        for e in df['endereco_completo'].to_list():
-            st.write(converte_endereco(e))
+        st.write(converte_endereco('R. Maestro Antônio Cícero, 111, Serra - ES'))
+
+        #for e in df['endereco_completo'].to_list():
+        #    st.write(converte_endereco(e))
 
         #df = agrupa_visitas(df, equipes)
 
