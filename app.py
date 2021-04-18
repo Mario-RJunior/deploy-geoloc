@@ -20,6 +20,7 @@ if __name__ == '__main__':
 
     else:
         df = gera_dataframe(bd)
+        df = df['endereco_completo'].apply(converte_endereco)
 
         #df = agrupa_visitas(df, equipes)
 
