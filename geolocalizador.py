@@ -188,7 +188,7 @@ def retorna_rotas(rotas):
     return dic_rotas_ordenadas
 
 
-def distancias_max_min(dataframe, origem):
+def distancias_min_max(dataframe, origem):
     grupos = np.sort(dataframe['equipes'].unique())
     lista_distancias = []
 
