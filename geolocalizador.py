@@ -188,7 +188,61 @@ def retorna_rotas(rotas):
     return dic_rotas_ordenadas
 
 
-def distancias_min_max(dataframe, origem):
+def distancias_min_max(dataframe, origem, maximo=True):
+    """
+    Função que retorna distâncias máximas e mínimas de cada rota.
+    :param dataframe: Dataframe atualizado.
+    :param origem: Ponto de partida para as visitas.
+    :param maximo: Indica se queremos retornar as distâncias máximas ou mínimas. Se True = máxima, se False = mínima.
+    :return: Lista com os endereços com suas respectivas distâncas.
+    """
+    grupos = np.sort(dataframe['equipes'].unique())
+    lista_distancias = []
+    dist_min_max = []
+
+    for g in grupos:
+
+        inicio = origem
+        df = dataframe.query(f'equipes == {g}')
+        enderecos = df['endereco_completo'].to_list()
+        dic_temp = {}
+        dic = {}
+        min_dist = 0
+
+        while len(enderecos) > 0:
+
+            for end in enderecos:
+                coord_inicio = converte_endereco(inicio)
+                coord = converte_endereco(end)
+                distancia = geopy.distance.distance(coord_inicio, coord).km
+
+                dic_temp[end] = distancia
+
+            if maximo:
+                mais_perto = max(dic_temp, key=dic_temp.get)
+
+            else:
+                mais_perto = min(dic_temp, key=dic_temp.get)
+
+            dic[mais_perto] = dic_temp[mais_perto]
+            inicio = mais_perto
+
+            min_dist += dic_temp[mais_perto]
+            dic_temp.clear()
+            enderecos.remove(mais_perto)
+
+        lista_distancias.append(dic)
+
+    for d in lista_distancias:
+        soma = 0
+        for _, v in d.items():
+            soma += v
+        dist_min_max.append(soma)
+
+    return dist_min_max
+
+
+"""def distancias_min_max(dataframe, origem):
     grupos = np.sort(dataframe['equipes'].unique())
     lista_distancias = []
 
@@ -220,4 +274,4 @@ def distancias_min_max(dataframe, origem):
 
         lista_distancias.append(dic2)
 
-    return lista_distancias
+    return lista_distancias"""
