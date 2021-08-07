@@ -9,6 +9,12 @@ import numpy as np
 
 class Mapzer(Bd):
 
+    def __init__(self, origem, data, quantidade):
+        self.origem = origem
+        self.data = data
+        self.quantidade = quantidade
+        self.dados = {}
+
     def acessa_bd(data):
         """
         Função que chama a função listar e filtra as informações do banco de dados pela data recebida.
