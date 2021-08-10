@@ -30,13 +30,13 @@ class Mapzer(Bd):
         return self.dados
 
 
-    def gera_dataframe(dado):
+    def gera_dataframe(self):
         """
         Função que gera um dataframe a partir das informações do banco de dados.
         :param dado: Dicionário com os dados do banco de dados passado pela função acessa_bd.
         :return: Dataframe completo com informações do banco de dados.
         """
-        dataframe = pd.DataFrame(dado)
+        dataframe = pd.DataFrame(self.dado)
         dataframe['endereco_completo'] = \
             dataframe['Rua'].astype(str) + ', ' + dataframe['Numero_rua'].astype(str) + ', ' + \
             dataframe['Cidade'].astype(str) + ' - ' + dataframe['Estado'].astype(str)
