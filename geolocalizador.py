@@ -44,7 +44,7 @@ class Mapzer(Bd):
         return dataframe
 
 
-    def converte_endereco(endereco):
+    def converte_endereco(self, endereco):
         """
         Função que recebe um endereço e o converte para coordenadas geográficas.
         :param endereco: Endereço a que se deseja calcular suas coordenadas geográficas.
