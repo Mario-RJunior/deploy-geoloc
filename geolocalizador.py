@@ -57,16 +57,15 @@ class Mapzer(Bd):
         return loc.latitude, loc.longitude
 
 
-    def agrupa_visitas(dataframe, num_equipes):
+    def agrupa_visitas(self, dataframe):
         """
         Função que faz o agrupamento dos pacientes a partir da sua localização.
         :param dataframe: Dataframe que possue endereço dos clientes.
-        :param num_equipes: Número de grupos em que se deseja agrupar os pacientes.
         :return: Dataframe com colunas extras para latitude, longitute e grupo a qual o paciente foi associado. 
         """
         try:
 
-            serie = dataframe['endereco_completo'].apply(converte_endereco)
+            serie = dataframe['endereco_completo'].apply(self.converte_endereco)
 
             dataframe['latitude'] = serie.apply(lambda lat: lat[0])
             dataframe['longitude'] = serie.apply(lambda lon: lon[1])
@@ -83,7 +82,7 @@ class Mapzer(Bd):
 
                 x = dataframe.loc[:, ['latitude', 'longitude']].values
 
-                clustering = SpectralClustering(n_clusters=num_equipes,
+                clustering = SpectralClustering(n_clusters=self.quantidade,
                                                 assign_labels="discretize",
                                                 random_state=0,
                                                 affinity='nearest_neighbors',
