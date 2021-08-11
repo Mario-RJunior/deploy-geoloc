@@ -74,7 +74,7 @@ class Mapzer(Bd):
 
                 pass
 
-            elif len(dataframe) == 1:
+            elif len(dataframe) in [1, 2, 3]:
 
                 dataframe['equipes'] = 0
 
@@ -90,6 +90,7 @@ class Mapzer(Bd):
 
                 previsoes = clustering.fit_predict(x)
                 dataframe['equipes'] = previsoes
+                dataframe['equipes'] = dataframe['equipes'].apply(lambda x: x + 1)
 
         except TypeError:
 
