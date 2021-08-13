@@ -101,7 +101,7 @@ class Mapzer(Bd):
             return dataframe
 
 
-    def map_plot(dataframe, origem):
+    def map_plot(self, dataframe, equipe):
         """
         Função para plotar o mapa com as localizações dos endereços.
         :param dataframe: Dataframe que possui as coordenadas geográficas dos endereços.
@@ -114,11 +114,14 @@ class Mapzer(Bd):
                             'lightred', 'darkgreen', 'purple', 'darkblue', 'black', 'red',
                             'lightblue', 'beige', 'green', 'lightgray', 'lightgreen', 'gray',
                             'white')
+            
+            if equipe != 0:
+                dataframe = dataframe.query(f'equipes == {equipe}')
 
             lat = dataframe['latitude'].to_list()
             lon = dataframe['longitude'].to_list()
             equipes = dataframe['equipes'].to_list()
-            coord_origem = converte_endereco(origem)
+            coord_origem = self.converte_endereco(self.origem)
 
             coordenadas = list(zip(lat, lon, equipes))
 
@@ -127,7 +130,7 @@ class Mapzer(Bd):
             for loc in coordenadas:
                 folium.Marker(location=(loc[0], loc[1]),
                             icon=folium.Icon(color=paleta_cores[loc[2]], icon='user', prefix="fa"),
-                            popup=f'Equipe {loc[2] + 1}'
+                            popup=f'Equipe {loc[2]}'
                             ).add_to(m)
 
             folium.Marker(location=(coord_origem[0], coord_origem[1]),
