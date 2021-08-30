@@ -18,7 +18,6 @@ class Mapzer(Bd):
     def acessa_bd(self):
         """
         Função que chama a função listar e filtra as informações do banco de dados pela data recebida.
-        :param data: Data para fazer o filtro no banco de dados.
         :return: Retorna um dicionário com os dados do banco de dados.
         """
         colunas = ['id', 'Nome', 'Rua', 'Numero_rua', 'Bairro', 'Cidade', 'Estado', 'Data']
